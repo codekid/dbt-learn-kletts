@@ -39,3 +39,12 @@ models:
           - relationships:
               to: ref('stg_customers')
               field: customer_id
+  
+  - name: orders
+    description: This model aggregates succeful order by payments by cutermer and order id
+    columns:
+      - name: order_id
+        description: id of the order
+        tests:
+          - not_null
+          - unique
