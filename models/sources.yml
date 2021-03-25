@@ -16,3 +16,16 @@ sources:
     tables:
       - name: payment
         description: first level of our payments staging environment
+
+  - name: ticket_tailor
+    description: "Event and ticket data from ticket tailor"
+    database: raw
+    tables:
+      - name: events
+        columns: 
+          - name: id
+            test:
+              - not_null
+
+      - name: orders
+      - name: issued_tickets

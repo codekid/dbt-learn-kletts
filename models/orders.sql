@@ -14,11 +14,11 @@
 -- grabbing only successful payments
 WITH payments AS ( 
   SELECT
-    orderid,
-    SUM(amount) / 100 AS amount -- convert from cents to dollars
+    order_id,
+    SUM(amount) AS amount -- convert from cents to dollars
   FROM  {{ ref('stg_payments') }}
   WHERE status = 'success'
-  GROUP BY orderid
+  GROUP BY order_id
 ),
 
 order_customer AS (
@@ -31,8 +31,8 @@ final AS (
   select *
   from payments py
   LEFT JOIN order_customer cu
-  on py.orderid = cu.order_id
+  on py.order_id = cu.order_id
 )
 
 SELECT *
-FROM final
+FROM payments
